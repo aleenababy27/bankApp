@@ -41,14 +41,16 @@
 				
 			</div>
 			<div class="card-body">
-				<form onsubmit="event.preventDefault();bank.authenticate()">
+				<form >
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
 						<!-- <input type="text" class="form-control" (change)="acnoChange($event)" [placeholder]="accnum" id="login_accno" required>
 						 -->
-						<input type="text" class="form-control" #acno [placeholder]="accnum" id="login_accno" required>
+						<!-- <input type="text" class="form-control" #acno [placeholder]="accnum" id="login_accno" required> -->
+
+						<input type="text" class="form-control" name="acno" [(ngModel)]="acno" [placeholder]="accnum" id="login_accno" required>
 						
 					</div>
 					<div class="input-group form-group">
@@ -57,7 +59,10 @@
 						</div>
 						<!-- <input type="password" (change)="passwordChange($event)"  class="form-control" placeholder="password" id="login_password" required>
 						 -->
-						<input type="password" #pswd  class="form-control" placeholder="password" id="login_password" required>
+						<!-- <input type="password" #pswd  class="form-control" placeholder="password" id="login_password" required>
+					 -->
+
+						<input type="password" name="pswd"  [(ngModel)]="pswd"  class="form-control" placeholder="password" id="login_password" required>
 					
 					</div>
 					
@@ -65,7 +70,12 @@
 						<!-- <input type="submit"(click)="login()" value="Login" class="btn float-right login_btn " style="width:50%" >
 					 -->
 						
-						<input type="submit"(click)="login(acno,pswd)" value="Login" class="btn float-right login_btn " style="width:50%" >
+						<!-- <input type="submit"(click)="login(acno,pswd)" value="Login" class="btn float-right login_btn " style="width:50%" >
+					 -->
+						
+					<input type="submit"(click)="login()" value="Login" class="btn float-right login_btn " style="width:50%" >
+					
+					
 					</div>
 				</form>
 			</div>

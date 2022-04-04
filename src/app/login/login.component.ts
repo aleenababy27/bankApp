@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
   aim="Your Perfect Banking Partner";
   accnum="Please enter your Account number"
   acno=""
-  pwd=""
+  pswd=""
 
   // dataBase
 
@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
   }
   
   passwordChange(event:any){
-    this.pwd=event.target.value;
-    console.log(this.pwd);
+    this.pswd=event.target.value;
+    console.log(this.pswd);
     
   }
   acnoChange(event:any){
@@ -39,34 +39,12 @@ export class LoginComponent implements OnInit {
     
   }
 
-// login using change
-  // login(){
+// login using change and ngModel (two way binding)
 
-  //   var acno=this.acno;
-  //   var pwd=this.pwd;
-  //   var database=this.dataBase;
+  login(){
 
-  //   if(acno in database){
-
-  //     if(pwd==database[acno]["password"])
-  //     {
-  //       alert("Login Succesfull")
-  //     }
-  //     else{
-  //       alert("Invalid Password")
-  //     }
-
-  //   }
-  //   else{
-  //     alert("Invalid User")
-  //   }
-   
-  // }
-// login using template reference variables
-  login(a:any,p:any){
-
-    var acno=a.value;
-    var pwd=p.value;
+    var acno=this.acno;
+    var pwd=this.pswd;
     var database=this.dataBase;
 
     if(acno in database){
@@ -85,5 +63,29 @@ export class LoginComponent implements OnInit {
     }
    
   }
+// login using template reference variables
+
+  // login(a:any,p:any){
+
+  //   var acno=a.value;
+  //   var pwd=p.value;
+  //   var database=this.dataBase;
+
+  //   if(acno in database){
+
+  //     if(pwd==database[acno]["password"])
+  //     {
+  //       alert("Login Succesfull")
+  //     }
+  //     else{
+  //       alert("Invalid Password")
+  //     }
+
+  //   }
+  //   else{
+  //     alert("Invalid User")
+  //   }
+   
+  // }
 
 }
