@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   // dataBase
 
-  dataBase={
+  dataBase:any={
 
       1000:{acno:1000,uname:"Aleena",password:1000,balance:750},
       1001:{acno:1001,uname:"Mariya",password:1001,balance:1500},
@@ -41,7 +41,26 @@ export class LoginComponent implements OnInit {
 
 
   login(){
-    alert("Login attempted")
+
+    var acno=this.acno;
+    var pwd=this.pwd;
+    var database=this.dataBase;
+
+    if(acno in database){
+
+      if(pwd==database[acno]["password"])
+      {
+        alert("Login Succesfull")
+      }
+      else{
+        alert("Invalid Password")
+      }
+
+    }
+    else{
+      alert("Invalid User")
+    }
+   
   }
 
 }
