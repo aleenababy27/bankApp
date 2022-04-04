@@ -39,11 +39,34 @@ export class LoginComponent implements OnInit {
     
   }
 
+// login using change
+  // login(){
 
-  login(){
+  //   var acno=this.acno;
+  //   var pwd=this.pwd;
+  //   var database=this.dataBase;
 
-    var acno=this.acno;
-    var pwd=this.pwd;
+  //   if(acno in database){
+
+  //     if(pwd==database[acno]["password"])
+  //     {
+  //       alert("Login Succesfull")
+  //     }
+  //     else{
+  //       alert("Invalid Password")
+  //     }
+
+  //   }
+  //   else{
+  //     alert("Invalid User")
+  //   }
+   
+  // }
+// login using template reference variables
+  login(a:any,p:any){
+
+    var acno=a.value;
+    var pwd=p.value;
     var database=this.dataBase;
 
     if(acno in database){
