@@ -41,7 +41,7 @@
 				
 			</div>
 			<div class="card-body">
-				<form >
+				<form (ngSubmit)="login()">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -73,7 +73,9 @@
 						<!-- <input type="submit"(click)="login(acno,pswd)" value="Login" class="btn float-right login_btn " style="width:50%" >
 					 -->
 						
-					<input type="submit"(click)="login()" value="Login" class="btn float-right login_btn " style="width:50%" >
+					<!-- <input type="submit"(click)="login()" value="Login" class="btn float-right login_btn " style="width:50%" > -->
+					
+					<input type="submit" value="Login" class="btn float-right login_btn " style="width:50%" >
 					
 					
 					</div>
