@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,27 +16,72 @@ export class DataService {
 }
 
 
-  constructor() { }
- 
-  register(uname:any,acno:any,password:any){
+  constructor(private router: Router) { }
 
-    let database=this.database
+  register(uname: any, acno: any, password: any) {
 
-    if(acno in database)
-    {
+    let database = this.database
+
+    if (acno in database) {
       return false //already a user
     }
-    else{
-        database[acno]={
-          acno,
-          uname,
-          password,
-          balance:0
-        }
-        return true  
+    else {
+      database[acno] = {
+        acno,
+        uname,
+        password,
+        balance: 0
+      }
+      console.log(database);
+
+      return true
     }
     console.log();
   }
 
+  login(acno: any, pswd: any) {
+
+
+    let database = this.database;
+
+    if (acno in database) {
+
+      if (pswd == database[acno]["password"]) {
+        return true
+      }
+      else {
+        alert("Invalid Password")
+        return false
+      }
+
+    }
+    else {
+      alert("Invalid User")
+      return false
+    }
+
+  }
+
+  deposit(acno:any,pswd:any,amt:any)
+  {
+    var amount = parseInt(amt);
+    let database=this.database;
+
+    if(acno in database)
+    {
+      if(pswd==database[acno]["password"])
+      {
+        database[acno]["balance"] += amount;
+        return database[acno]["balance"] 
+      }
+    else{
+      alert("Wrong Password")
+    }
+    }
+    else{
+      alert("Wrong Accont Number")
+    }
+
+  }
 
 }

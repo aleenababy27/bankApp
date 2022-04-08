@@ -29,43 +29,44 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-  passwordChange(event:any){
-    this.pswd=event.target.value;
-    console.log(this.pswd);
+  // change event
+
+  // passwordChange(event:any){
+  //   this.pswd=event.target.value;
+  //   console.log(this.pswd);
     
-  }
-  acnoChange(event:any){
-    this.acno=event.target.value;
-    console.log(this.acno);
+  // }
+  // acnoChange(event:any){
+  //   this.acno=event.target.value;
+  //   console.log(this.acno);
     
-  }
+  // }
 
 // login using change and ngModel (two way binding)
 
-  login(){
+  // login(){
 
-    var acno=this.acno;
-    var pwd=this.pswd;
-    var database=this.ds.database;
+  //   var acno=this.acno;
+  //   var pwd=this.pswd;
+  //   var database=this.ds.database;
 
-    if(acno in database){
+  //   if(acno in database){
 
-      if(pwd==database[acno]["password"])
-      {
-        alert("Login Succesfull")
-        this.router.navigateByUrl("dashboard") // adding url for navigation
-      }
-      else{
-        alert("Invalid Password")
-      }
+  //     if(pwd==database[acno]["password"])
+  //     {
+  //       alert("Login Succesfull")
+  //       this.router.navigateByUrl("dashboard") // adding url for navigation
+  //     }
+  //     else{
+  //       alert("Invalid Password")
+  //     }
 
-    }
-    else{
-      alert("Invalid User")
-    }
+  //   }
+  //   else{
+  //     alert("Invalid User")
+  //   }
    
-  }
+  // }
 // login using template reference variables
 
   // login(a:any,p:any){
@@ -90,5 +91,18 @@ export class LoginComponent implements OnInit {
   //   }
    
   // }
+ // login using ds database
 
-}
+  login(){
+
+    var acno=this.acno;
+    var pwd=this.pswd;
+    const result = this.ds.login(acno,pwd)
+     
+    if(result)
+    {
+      alert("Login Succesfull")
+      this.router.navigateByUrl("dashboard") 
+    }
+
+}}

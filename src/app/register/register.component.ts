@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
     }
     else{
       alert("Already registered y this account number. please login or try with new number.")
+      this.router.navigateByUrl("")
     }
     
   }
