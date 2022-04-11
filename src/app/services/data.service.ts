@@ -84,4 +84,33 @@ export class DataService {
 
   }
 
+  
+  withdraw(acno:any,pswd:any,amt:any)
+  {
+    var amount = parseInt(amt);
+    let database=this.database;
+
+    if(acno in database)
+    {
+      if(pswd==database[acno]["password"])
+      {
+        if(database[acno]["balance"]>amount)
+        {
+        database[acno]["balance"] -= amount;
+        return database[acno]["balance"] 
+      }
+      else{
+        alert("Insuffient balance")
+      }
+    }
+    else{
+      alert("Wrong Password")
+    }
+    }
+    else{
+      alert("Wrong Accont Number")
+    }
+
+  }
+
 }

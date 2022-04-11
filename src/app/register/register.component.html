@@ -15,29 +15,41 @@
                   
               </div>
               <div class="card-body">
-                  <form (ngSubmit)="register()">
-                   
+                  
+                 <!-- <form (ngSubmit)="register()"> using ng model --> 
+                 
+                    <form  [formGroup]="registerForm" (ngSubmit)="register()"> 
+                    <!--using form builder -->
+
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="uname" [(ngModel)]="uname" placeholder="Enter your Username" id="login_uname" required>
+                        <!-- <input type="text" class="form-control" name="uname" [(ngModel)]="uname" placeholder="Enter your Username" id="login_uname" required>
+                        -->
+                        
+                        <input type="text" class="form-control" name="uname" formControlName="uname" placeholder="Enter your Username" id="login_uname" required>
                         
                     </div>
                       <div class="input-group form-group">
                           <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-user"></i></span>
                           </div>
-                          <input type="text" class="form-control" name="acno" [(ngModel)]="acno" placeholder="Enter your Account Number" id="login_accno" required>
+                          <!-- <input type="text" class="form-control" name="acno" [(ngModel)]="acno" placeholder="Enter your Account Number" id="login_accno" required>
+                           -->
                           
+                          <input type="text" class="form-control" name="acno" formControlName="acno" placeholder="Enter your Account Number" id="login_accno" required>
+                          
+
                       </div>
                       <div class="input-group form-group">
                           <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-key"></i></span>
                           </div>
-                         
+                          <!-- <input type="password" name="pswd"  [(ngModel)]="pswd"  class="form-control" placeholder="Enter your Password" id="login_password" required>
+                       -->
   
-                          <input type="password" name="pswd"  [(ngModel)]="pswd"  class="form-control" placeholder="Enter your Password" id="login_password" required>
+                          <input type="password" name="pswd" formControlName="pswd"  class="form-control" placeholder="Enter your Password" id="login_password" required>
                       
                       </div>
                       

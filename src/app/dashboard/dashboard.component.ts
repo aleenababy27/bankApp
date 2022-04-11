@@ -33,8 +33,16 @@ deposit()
     alert(amount + " deposited successfully. New Balance is " + result)
   }
 }
-withdraw()
-{
-  alert("done")
+
+withdraw(){
+  var acno =this.acno1
+  var pswd =this.pswd1
+  var amount =this.amount1
+  const result = this.ds.withdraw(acno,pswd,amount)
+
+  if(result)
+  {
+    alert(amount + " withdrawed successfully. New Balance is " + result)
+  }
 }
 }
