@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
-
+  user:any;
+  currentUser:any;
+  currentAcno:any;
   database:any={
 
-    1000:{acno:1000,uname:"Aleena",password:1000,balance:750},
-    1001:{acno:1001,uname:"Mariya",password:1001,balance:1500},
-    1002:{acno:1000,uname:"Augustine",password:1002,balance:50000}
+    1000:{acno:1000,uname:"Aleena",password:1000,balance:750,transaction:[]},
+    1001:{acno:1001,uname:"Mariya",password:1001,balance:1500,transaction:[]},
+    1002:{acno:1000,uname:"Augustine",password:1002,balance:50000,transaction:[]}
 
 }
+  
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private fb:FormBuilder,) { 
+
+    
+  }
 
   register(uname: any, acno: any, password: any) {
 
@@ -30,7 +36,8 @@ export class DataService {
         acno,
         uname,
         password,
-        balance: 0
+        balance: 0,
+        transaction:[]
       }
       console.log(database);
 
@@ -47,6 +54,8 @@ export class DataService {
     if (acno in database) {
 
       if (pswd == database[acno]["password"]) {
+        this.currentUser=database[acno]["uname"]
+        this.currentAcno=acno;
         return true
       }
       else {
@@ -72,6 +81,11 @@ export class DataService {
       if(pswd==database[acno]["password"])
       {
         database[acno]["balance"] += amount;
+        database[acno]["transaction"].push({
+          type:"CREDIT",
+          amount:amount
+        })
+        console.log(database);
         return database[acno]["balance"] 
       }
     else{
@@ -97,8 +111,16 @@ export class DataService {
         if(database[acno]["balance"]>amount)
         {
         database[acno]["balance"] -= amount;
+        database[acno]["transaction"].push({
+          type:"DEBIT",
+          amount:amount
+          
+        })
+        console.log(database);
         return database[acno]["balance"] 
       }
+      
+      
       else{
         alert("Insuffient balance")
       }
@@ -112,5 +134,10 @@ export class DataService {
     }
 
   }
+// transaction history
+transaction(acno:any){
 
+  return this.database[acno].transaction
+
+}
 }

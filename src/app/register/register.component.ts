@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
@@ -15,9 +15,9 @@ export class RegisterComponent implements OnInit {
 
 registerForm=this.fb.group(
   {
-    acno:[''],
-    uname:[''],
-    pswd:['']
+    acno:['',[Validators.required,Validators.pattern('[0-9]*')]],
+    uname:['',[Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+    pswd:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
 
   }
 )
@@ -28,9 +28,12 @@ registerForm=this.fb.group(
   ngOnInit(): void {
   }
   register(){
+
     let uname=this.registerForm.value.uname
     let acno=this.registerForm.value.acno
     let pswd=this.registerForm.value.pswd
+
+    if(this.registerForm.valid){
 
     let result = this.db.register(uname,acno,pswd)
 
@@ -46,5 +49,9 @@ registerForm=this.fb.group(
     }
     
   }
+  else {
+    alert("Invalid form inputs")
+  }
 
+}
 }
