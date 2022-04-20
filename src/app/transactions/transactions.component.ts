@@ -15,7 +15,7 @@ export class TransactionsComponent implements OnInit {
   constructor(private ds:DataService) { 
   this.user=this.ds.currentUser;
   this.acno=this.ds.currentAcno
-  this.ds.transaction(this.acno)
+  this.transaction=this.ds.transaction(this.acno)
 
   }
 
