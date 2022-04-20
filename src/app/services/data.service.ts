@@ -23,11 +23,11 @@ saveDetails(){
   localStorage.setItem("database",JSON.stringify(this.database))
 if(this.currentAcno)
 {
-  localStorage.setItem("currentAcno",JSON.stringify(this.database))
+  localStorage.setItem("currentAcno",JSON.stringify(this.currentAcno))
 }
 if(this.currentUser)
 {
-  localStorage.setItem("currentUser",JSON.stringify(this.database))
+  localStorage.setItem("currentUser",JSON.stringify(this.currentUser))
 }
 }
 
@@ -69,7 +69,7 @@ this.getDetails()
       this.saveDetails()
       return true
     }
-    console.log();
+  
   }
 
   login(acno: any, pswd: any) {
@@ -81,7 +81,11 @@ this.getDetails()
 
       if (pswd == database[acno]["password"]) {
         this.currentUser=database[acno]["uname"]
+        console.log(this.currentUser);
+        
         this.currentAcno=acno;
+        console.log(this.currentAcno);
+        
         this.saveDetails()
         return true
       }

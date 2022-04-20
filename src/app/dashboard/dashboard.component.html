@@ -1,10 +1,17 @@
 <nav class="navbar navbar-light bg-dark ">
-    <button (click)="logout()" class="btn btn-warning">Logout</button>
+  
+    <a style="color: rgb(231, 165, 66); text-align: center;"routerLink="/transactions"> Transaction History </a>
+
+    <button (click)="logout()" class="btn btn-warning ">Logout</button>
 </nav>
 
-<h2 style="color: bisque; text-align: center;">Welcome {{user}}!!! Enjoy Banking with us.</h2>
-<a style="color: rgb(169, 112, 43); text-align: center;"routerLink="/transactions"> Transaction History </a>
+<h2 style="color: bisque; text-align: left;">Welcome {{user}}!!! Enjoy Banking with us.</h2>
+<h4 style="color: bisque; text-align: left;"> Login details are :- {{logInDate|date:'fullDate'|uppercase}}</h4>
+<button (click)="deleteFromParent()"  class="btn btn-danger" style="float: right;">Delete</button>
+<br>
+<app-deleteconfirm [item]="deleteAcno">
 
+</app-deleteconfirm>
 
 <div class="container col-md-12 mt-0">
     <div class="d-flex justify-content-center h-100">
