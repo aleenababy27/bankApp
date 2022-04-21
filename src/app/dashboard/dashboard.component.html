@@ -1,23 +1,23 @@
 <nav class="navbar navbar-light bg-dark ">
   
     <a style="color: rgb(231, 165, 66); text-align: center;"routerLink="/transactions"> Transaction History </a>
-
+<h6 style="color: bisque;"> Enjoy Banking with us.</h6>
     <button (click)="logout()" class="btn btn-warning ">Logout</button>
 </nav>
 
-<h2 style="color: bisque; text-align: left;">Welcome {{user}}!!! Enjoy Banking with us.</h2>
+<h2 style="color: bisque; text-align: left;">Welcome {{user}}!!!</h2>
 <h4 style="color: bisque; text-align: left;"> Login details are :- {{logInDate|date:'fullDate'|uppercase}}</h4>
 <button (click)="deleteFromParent()"  class="btn btn-danger" style="float: right;">Delete</button>
 <br>
-<app-deleteconfirm [item]="deleteAcno">
+<app-deleteconfirm (onCancel)="onCancel()" (onDelete)="onDelete($event)" [item]="deleteAcno">
 
 </app-deleteconfirm>
 <br>
-<div class="container col-md-12 mt-0">
+<div [ngClass]="deleteAcno? 'style1':''"  class="container col-md-12 mt-0">
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
-                <h3 class="text-center">Cash Deposit</h3>
+                <h3 appHighlights class="text-center">Cash Deposit</h3>
 
             </div>
             <div class="card-body">
@@ -87,11 +87,11 @@
     </div>
 </div>
 
-<div class="container col-md-12 mt-0">
+<div [ngClass]="deleteAcno? 'style1':''" class="container col-md-12 mt-0">
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
-                <h3 class="text-center">Cash Withdraw</h3>
+                <h3 appHighlights  class="text-center">Cash Withdraw</h3>
 
             </div>
             <div class="card-body">

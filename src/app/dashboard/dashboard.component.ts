@@ -96,4 +96,13 @@ deleteFromParent(){
 this.deleteAcno=JSON.parse(localStorage.getItem("currentAcno")||'')
 }
 
+onCancel(){
+  this.deleteAcno=""
+}
+
+onDelete(event:any){
+  alert("Deleted Account " + this.deleteAcno)
+ 
+}
+
 }
