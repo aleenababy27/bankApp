@@ -7,11 +7,17 @@
 
 <h2 style="color: bisque; text-align: left;">Welcome {{user}}!!!</h2>
 <h4 style="color: bisque; text-align: left;"> Login details are :- {{logInDate|date:'fullDate'|uppercase}}</h4>
+
+<!-- <app-animation></app-animation>
+animation details -->
+
 <button (click)="deleteFromParent()"  class="btn btn-danger" style="float: right;">Delete</button>
 <br>
 <app-deleteconfirm (onCancel)="onCancel()" (onDelete)="onDelete($event)" [item]="deleteAcno">
 
 </app-deleteconfirm>
+
+
 <br>
 <div [ngClass]="deleteAcno? 'style1':''"  class="container col-md-12 mt-0">
     <div class="d-flex justify-content-center h-100">
