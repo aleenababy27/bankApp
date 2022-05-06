@@ -39,16 +39,16 @@ withdrawForm=this.fb.group(
 logInDate:any;
 
   constructor(private ds:DataService , private fb:FormBuilder, private router: Router) {
-   this.user=this.ds.currentUser;
+   this.user=JSON.parse(localStorage.getItem('currentUser') || '');
    this.logInDate = new Date()
    }
 
   ngOnInit(): void {
 
-    if(!localStorage.getItem("currentAcno")){
-      alert("Please log in")
-      this.router.navigateByUrl("")
-    }
+    // if(!localStorage.getItem("currentAcno")){
+    //   alert("Please log in")
+    //   this.router.navigateByUrl("")
+    // }
   }
 deposit()
 {

@@ -23,7 +23,7 @@ registerForm=this.fb.group(
 )
 
 
-  constructor(private db:DataService, private router:Router, private fb:FormBuilder) { }
+  constructor(private ds:DataService, private router:Router, private fb:FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -35,23 +35,39 @@ registerForm=this.fb.group(
 
     if(this.registerForm.valid){
 
-    let result = this.db.register(uname,acno,pswd)
+    //let result = this.ds.register(uname,acno,pswd)
 
+    this.ds.register(uname,acno,pswd).subscribe((result:any)=>{
 
+      
     if(result)
     {
-      alert("registration completed. Login Now !!!!")
+      alert(result.message)
       this.router.navigateByUrl("")
     }
-    else{
-      alert("Already registered y this account number. please login or try with new number.")
-      this.router.navigateByUrl("")
+
+    },
+    (result:any)=>{
+      alert(result.error.message)
     }
     
+    )
+
+
+    // if(result)
+    // {
+    //   alert("registration completed. Login Now !!!!")
+    //   this.router.navigateByUrl("")
+    // }
+    // else{
+    //   alert("Already registered y this account number. please login or try with new number.")
+    //   this.router.navigateByUrl("")
+    // }
+    
   }
-  else {
-    alert("Invalid form inputs")
-  }
+  // else {
+  //   alert("Invalid form inputs")
+  // }
 
 }
 }

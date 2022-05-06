@@ -84,30 +84,36 @@ this.getDetails()
   login(acno: any, pswd: any) {
 
 
-    let database = this.database;
-
-    if (acno in database) {
-
-      if (pswd == database[acno]["password"]) {
-        this.currentUser=database[acno]["uname"]
-        console.log(this.currentUser);
-        
-        this.currentAcno=acno;
-        console.log(this.currentAcno);
-        
-        this.saveDetails()
-        return true
-      }
-      else {
-        alert("Invalid Password")
-        return false
-      }
-
+    const data={
+      acno,pswd
     }
-    else {
-      alert("Invalid User")
-      return false
-    }
+    return this.http.post('http://localhost:3000/login',data);
+
+
+    // let database = this.database;
+
+    // if (acno in database) {
+
+    //   if (pswd == database[acno]["password"]) {
+    //     this.currentUser=database[acno]["uname"]
+    //     console.log(this.currentUser);
+        
+    //     this.currentAcno=acno;
+    //     console.log(this.currentAcno);
+        
+    //     this.saveDetails()
+    //     return true
+    //   }
+    //   else {
+    //     alert("Invalid Password")
+    //     return false
+    //   }
+
+    // }
+    // else {
+    //   alert("Invalid User")
+    //   return false
+    // }
 
   }
 
