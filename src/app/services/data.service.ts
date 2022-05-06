@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -45,30 +46,38 @@ getDetails(){
   
 
 
-  constructor(private router: Router,private fb:FormBuilder,) { 
+  constructor(private router: Router,private fb:FormBuilder, private http: HttpClient) { 
 this.getDetails()
     
   }
 
-  register(uname: any, acno: any, password: any) {
-
-    let database = this.database
-
-    if (acno in database) {
-      return false //already a user
+  register(uname: any, acno: any, password: any): any {
+    const data ={
+      uname,
+      acno,
+      password
     }
-    else {
-      database[acno] = {
-        acno,
-        uname,
-        password,
-        balance: 0,
-        transaction:[]
-      }
-      console.log(database);
-      this.saveDetails()
-      return true
-    }
+
+    return this.http.post('http://localhost:3000/register',data)
+
+
+    // let database = this.database
+
+    // if (acno in database) {
+    //   return false //already a user
+    // }
+    // else {
+    //   database[acno] = {
+    //     acno,
+    //     uname,
+    //     password,
+    //     balance: 0,
+    //     transaction:[]
+    //   }
+    //   console.log(database);
+    //   this.saveDetails()
+    //   return true
+    // }
   
   }
 
@@ -180,3 +189,7 @@ logout(){
 }
 
 }
+function post(arg0: string, data: { uname: any; acno: any; password: any; }): any {
+  throw new Error('Function not implemented.');
+}
+
