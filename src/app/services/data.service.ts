@@ -1,7 +1,12 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+
+const options = {
+  headers:new HttpHeaders
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -116,33 +121,51 @@ this.getDetails()
     // }
 
   }
+  getOptions(){
 
+    const token = JSON.parse(localStorage.getItem("token")||"")
+    let headers= new HttpHeaders()
+    if(token){
+      headers=headers.append('x-acess-token',token)
+      options.headers=headers
+    }
+    return options
+  }
+  
   deposit(acno:any,pswd:any,amt:any)
   {
-    var amount = parseInt(amt);
-    let database=this.database;
 
-    if(acno in database)
-    {
-      if(pswd==database[acno]["password"])
-      {
-        database[acno]["balance"] += amount;
 
-        database[acno]["transaction"].push({
-          type:"CREDIT",
-          amount:amount
-        })
+    const data={
+      acno,pswd,amt
+    }
+    return this.http.post('http://localhost:3000/deposit',data,this.getOptions());
+
+
+    // var amount = parseInt(amt);
+    // let database=this.database;
+
+    // if(acno in database)
+    // {
+    //   if(pswd==database[acno]["password"])
+    //   {
+    //     database[acno]["balance"] += amount;
+
+    //     database[acno]["transaction"].push({
+    //       type:"CREDIT",
+    //       amount:amount
+    //     })
        
-        this.saveDetails()
-        return database[acno]["balance"] 
-      }
-    else{
-      alert("Wrong Password")
-    }
-    }
-    else{
-      alert("Wrong Accont Number")
-    }
+    //     this.saveDetails()
+    //     return database[acno]["balance"] 
+    //   }
+    // else{
+    //   alert("Wrong Password")
+    // }
+    // }
+    // else{
+    //   alert("Wrong Accont Number")
+    // }
 
   }
 
@@ -152,41 +175,56 @@ this.getDetails()
     var amount = parseInt(amt);
     let database=this.database;
 
-    if(acno in database)
-    {
-      if(pswd==database[acno]["password"])
-      {
-        if(database[acno]["balance"]>amount)
-        {
-        database[acno]["balance"] -= amount;
-        database[acno]["transaction"].push({
-          type:"DEBIT",
-          amount:amount
+    const data={
+      acno,pswd,amt
+    }
+    return this.http.post('http://localhost:3000/withdraw',data,this.getOptions());
+
+
+
+    // if(acno in database)
+    // {
+    //   if(pswd==database[acno]["password"])
+    //   {
+    //     if(database[acno]["balance"]>amount)
+    //     {
+    //     database[acno]["balance"] -= amount;
+    //     database[acno]["transaction"].push({
+    //       type:"DEBIT",
+    //       amount:amount
           
-        })
+    //     })
         
-        this.saveDetails()
-        return database[acno]["balance"] 
-      }
+    //     this.saveDetails()
+    //     return database[acno]["balance"] 
+    //   }
       
       
-      else{
-        alert("Insuffient balance")
-      }
-    }
-    else{
-      alert("Wrong Password")
-    }
-    }
-    else{
-      alert("Wrong Accont Number")
-    }
+    //   else{
+    //     alert("Insuffient balance")
+    //   }
+    // }
+    // else{
+    //   alert("Wrong Password")
+    // }
+    // }
+    // else{
+    //   alert("Wrong Accont Number")
+    // }
 
   }
 // transaction history
+
+
 transaction(acno:any){
 
-  return this.database[acno].transaction
+  const data={
+    acno
+  }
+  
+  return this.http.post('http://localhost:3000/transaction',data,this.getOptions());
+
+  // return this.database[acno].transaction
 
 }
 

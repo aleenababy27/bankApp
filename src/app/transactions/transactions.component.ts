@@ -14,8 +14,25 @@ export class TransactionsComponent implements OnInit {
 
   constructor(private ds:DataService) { 
   this.user=this.ds.currentUser;
-  this.acno=this.ds.currentAcno
-  this.transaction=this.ds.transaction(this.acno)
+  this.acno=this.ds.currentAcno;
+
+  //this.transaction=this.ds.transaction(this.acno)
+
+  this.ds.transaction(this.acno).subscribe((result:any)=>{
+
+      
+    if(result)
+    {
+      alert(result.message)
+     
+    }
+
+    },
+    (result:any)=>{
+      alert(result.error.message)
+    }
+    
+    )
 
   }
 

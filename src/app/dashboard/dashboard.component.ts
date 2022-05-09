@@ -1,7 +1,9 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -50,22 +52,44 @@ logInDate:any;
     //   this.router.navigateByUrl("")
     // }
   }
+
+
+
 deposit()
 {
   var acno =this.depositForm.value.acno
   var pswd =this.depositForm.value.pswd
   var amount =this.depositForm.value.amount
   if(this.depositForm.valid){
-  const result = this.ds.deposit(acno,pswd,amount)
 
-  if(result)
-  {
-    alert(amount + " deposited successfully. New Balance is " + result)
-  }
-}
+    this.ds.deposit(acno,pswd,amount).subscribe((result:any)=>{
+
+      
+      if(result)
+      {
+        alert(result.message)
+       
+      }
+  
+      },
+      (result:any)=>{
+        alert(result.error.message)
+      }
+      
+      )
+    }
+     
+
+//   const result = this.ds.deposit(acno,pswd,amount)
+
+//   if(result)
+//   {
+//     alert(amount + " deposited successfully. New Balance is " + result)
+//   }
+// }
 else{
   alert("invalid inputs")
-}
+ }
 }
 
 withdraw(){
@@ -74,16 +98,35 @@ withdraw(){
   var amount =this.withdrawForm.value.amount1
 
   if(this.withdrawForm.valid){
-  const result = this.ds.withdraw(acno,pswd,amount)
 
-  if(result)
-  {
-    alert(amount + " withdrawed successfully. New Balance is " + result)
-  }
-}
+    
+    this.ds.withdraw(acno,pswd,amount).subscribe((result:any)=>{
+
+      
+      if(result)
+      {
+        alert(result.message)
+       
+      }
+  
+      },
+      (result:any)=>{
+        alert(result.error.message)
+      }
+      
+      )
+    }
+
+ // const result = this.ds.withdraw(acno,pswd,amount)
+
+//   if(result
+//   {
+//     alert(amount + " withdrawed successfully. New Balance is " + result)
+//   }
+// }
 else{
-  alert("invalid inputs")
-}
+   alert("invalid inputs")
+ }
 
 }
 logout(){
