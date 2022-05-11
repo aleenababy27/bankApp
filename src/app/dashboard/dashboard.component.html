@@ -1,12 +1,14 @@
 <nav class="navbar navbar-light bg-dark ">
   
-    <a style="color: rgb(231, 165, 66); text-align: center;"routerLink="/transactions"> Transaction History </a>
+    
 <h6 style="color: bisque;"> Enjoy Banking with us.</h6>
     <button (click)="logout()" class="btn btn-warning ">Logout</button>
 </nav>
 
 <h2 style="color: bisque; text-align: left;">Welcome {{user}}!!!</h2>
 <h4 style="color: bisque; text-align: left;"> Login details are :- {{logInDate|date:'fullDate'|uppercase}}</h4>
+
+<a style="color: rgb(231, 165, 66); text-align: center;"routerLink="/transactions"> Transaction History </a>
 
 <!-- <app-animation></app-animation>
 animation details -->

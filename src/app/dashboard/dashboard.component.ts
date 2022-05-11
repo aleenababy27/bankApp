@@ -144,8 +144,26 @@ onCancel(){
 }
 
 onDelete(event:any){
-  alert("Deleted Account " + this.deleteAcno)
- 
+
+
+  //alert("Deleted Account " + this.deleteAcno)
+
+  this.ds.onDelete(this.deleteAcno).subscribe((result:any)=>{
+
+      
+    if(result)
+    {
+      alert(result.message)
+      this.router.navigateByUrl("")
+     
+    }
+
+    },
+    (result:any)=>{
+      alert(result.error.message)
+    }
+    
+    )
 }
 
 }

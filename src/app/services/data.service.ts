@@ -228,7 +228,23 @@ transaction(acno:any){
 
 }
 
-logout(){
+// onDelete(acno:any){
+//   const data={
+//     acno
+//   }
+//   return this.http.delete('http://localhost:3000/onDelete/'+acno,this.getOptions()); 
+
+// }
+onDelete(acno:any){
+  const data={
+    acno
+  }
+  return this.http.delete('http://localhost:3000/onDelete/'+acno,this.getOptions()); 
+
+}
+
+
+logout(): void{
 
 }
 
@@ -236,4 +252,5 @@ logout(){
 function post(arg0: string, data: { uname: any; acno: any; password: any; }): any {
   throw new Error('Function not implemented.');
 }
+
 

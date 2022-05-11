@@ -13,8 +13,9 @@ export class TransactionsComponent implements OnInit {
   transaction:any
 
   constructor(private ds:DataService) { 
-  this.user=this.ds.currentUser;
-  this.acno=this.ds.currentAcno;
+
+  this.user=JSON.parse(localStorage.getItem("currentUser")||"");
+  this.acno=JSON.parse(localStorage.getItem("currentAcno")||"");
 
   //this.transaction=this.ds.transaction(this.acno)
 
@@ -23,8 +24,10 @@ export class TransactionsComponent implements OnInit {
       
     if(result)
     {
-      alert(result.message)
-     
+
+      this.transaction=result.transaction;
+
+          
     }
 
     },
